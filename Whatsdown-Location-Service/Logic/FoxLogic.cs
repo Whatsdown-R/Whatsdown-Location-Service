@@ -13,6 +13,10 @@ namespace Whatsdown_Location_Service.Logic
     {
         public async Task<Fox> GetFoxImage()
         {
+
+        
+
+
             using (var client = new HttpClient())
             {
                 client.BaseAddress = new Uri("https://randomfox.ca/");

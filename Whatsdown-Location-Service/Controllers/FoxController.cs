@@ -13,6 +13,11 @@ namespace Whatsdown_Location_Service.Controllers
     [ApiController]
     public class FoxController : ControllerBase
     {
+        FoxLogic logic;
+        public FoxController()
+        {
+            this.logic = new FoxLogic();
+        }
 
         [HttpGet]
         public async Task<IActionResult> GetFox()
