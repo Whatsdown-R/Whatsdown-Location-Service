@@ -1,7 +1,9 @@
 
 # https://hub.docker.com/_/microsoft-dotnet
-FROM mcr.microsoft.com/dotnet/sdk:3.1 AS build
+FROM mcr.microsoft.com/dotnet/core/sdk:3.1 AS build
 WORKDIR /source
+EXPOSE 80
+EXPOSE 443
 
 # copy csproj and restore as distinct layers
 ENV PATH_WITH_SPACE="Whatsdown-Location-Service"

@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using RabbitMQ.Producer;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,10 +15,12 @@ namespace Whatsdown_Location_Service.Controllers
     public class LocationController : ControllerBase
     {
         LocationLogic logic;
+        RabbitMQProducer mQProducer;
        
         public LocationController()
         {
             this.logic = new LocationLogic();
+         /*   this.mQProducer = new RabbitMQProducer("amqp://guest:guest@localhost:5672");*/
         }
 
         [HttpGet]
@@ -28,6 +31,7 @@ namespace Whatsdown_Location_Service.Controllers
             try
             {
                 IpLocation fox = await logic.GetLocationFromIPAsync(ip);
+               /* mQProducer.Publish(fox);*/
                 response = Ok(new { test = fox });
                 return response;
             }
