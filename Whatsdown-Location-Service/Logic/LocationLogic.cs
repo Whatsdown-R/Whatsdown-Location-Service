@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +12,11 @@ namespace Whatsdown_Location_Service.Logic
 {
     public class LocationLogic
     {
+        ILogger logger;
+        public LocationLogic()
+        {
+          
+        }
 
         //
         public async Task<IpLocation> GetLocationFromIPAsync(string ip)
@@ -18,6 +24,7 @@ namespace Whatsdown_Location_Service.Logic
             var match = Regex.Match(ip, @"\b(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})\b");
             if (!match.Success)
             {
+                logger.LogWarning($"Attempted to get location from variable that did not have the normal ip regex : {1}", ip);
                 throw new ArgumentException("The variable is not an ip adress");
             }
 
@@ -36,8 +43,10 @@ namespace Whatsdown_Location_Service.Logic
             {
                 if (response.IsSuccessStatusCode)
                 {
+
                     var body = await response.Content.ReadAsStringAsync();
                     IpLocation location = JsonConvert.DeserializeObject<IpLocation>(body);
+                    logger.LogWarning($"succesfully got location from ip. Location: {1}, ip: {2}", location.country_name, ip);
                     return location;
                 }
             }
