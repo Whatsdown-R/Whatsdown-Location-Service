@@ -22,7 +22,6 @@ namespace Whatsdown_Location_Service.Controllers
         {
             this.logic = new LocationLogic();
             this.logger = logger;
-            this.logger.LogDebug("Started LocationService");
          /*   this.mQProducer = new RabbitMQProducer("amqp://guest:guest@localhost:5672");*/
         }
 
@@ -34,9 +33,9 @@ namespace Whatsdown_Location_Service.Controllers
             try
             {
                 this.logger.LogDebug($"Attempting to get location from ip: {1}", ip);
-                IpLocation fox = await logic.GetLocationFromIPAsync(ip);
+                string result = await logic.GetLocationFromIPAsync(ip);
                /* mQProducer.Publish(fox);*/
-                response = Ok(new { test = fox });
+                response = Ok(new { response = result });
               
                 return response;
             }
