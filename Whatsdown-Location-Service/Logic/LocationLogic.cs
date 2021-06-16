@@ -38,7 +38,7 @@ namespace Whatsdown_Location_Service.Logic
                     var body = await response.Content.ReadAsStringAsync();
                     response.Content.ToString();
                     Console.WriteLine(body);
-                    return response.Content.ToString();
+                    return body;
                 }
             }
             return null;
