@@ -27,7 +27,7 @@ namespace Whatsdown_Location_Service.Logic
             var request = new HttpRequestMessage
             {
                 Method = HttpMethod.Get,
-                RequestUri = new Uri("https://httpgetdemolocation.azurewebsites.net/api/HttpGetLocation?code=r5UpRXtsb/dquzjG4Q5NMMfsXDPTepVRrhPaS6Cw4YrJq0WcTW84fw==&location=100.0.0.1")
+                RequestUri = new Uri("https://httpgetdemolocation.azurewebsites.net/api/HttpGetLocation?code=r5UpRXtsb/dquzjG4Q5NMMfsXDPTepVRrhPaS6Cw4YrJq0WcTW84fw==&location=109.33.196.81")
               ,
             };
             using (var response = await client.SendAsync(request))
